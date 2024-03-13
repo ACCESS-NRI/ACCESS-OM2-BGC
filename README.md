@@ -4,7 +4,7 @@
   
 ACCESS-OM2-BGC is a global coupled ocean - sea ice model with WOMBAT biogeochemistrydeveloped by [COSIMA](http://www.cosima.org.au).
   
-ACCESS-OM2-BGC consists of the [MOM 5](https://github.com/ACCESS-NRI/MOM5) ocean model, [CICE 5](https://github.com/ACCESS-NRI/cice5) sea ice model, and a file-based atmosphere called [YATM](https://github.com/ACCESS-NRI/libaccessom2) coupled together using [OASIS3-MCT v2.0](https://github.com/ACCESS-NRI/oasis3-mct). ACCESS-OM2-BGC builds on the ACCESS-OM ([Bi et al., 2013](http://www.bom.gov.au/jshess/docs/2013/bi2_hres.pdf)) and AusCOM ([Roberts et al., 2007](https://50years.acs.org.au/content/dam/acs/50-years/journals/jrpit/JRPIT39.2.137.pdf); [Bi and Marsland, 2010](https://www.cawcr.gov.au/technical-reports/CTR_027.pdf)) models originally developed at [CSIRO](http://www.csiro.au).
+ACCESS-OM2-BGC consists of the [MOM 5](https://github.com/ACCESS-NRI/MOM5) ocean model with WOMBAT Biogeochemistry, [CICE 5](https://github.com/ACCESS-NRI/cice5) sea ice model, and a file-based atmosphere called [YATM](https://github.com/ACCESS-NRI/libaccessom2) coupled together using [OASIS3-MCT v2.0](https://github.com/ACCESS-NRI/oasis3-mct). ACCESS-OM2-BGC builds on the ACCESS-OM ([Bi et al., 2013](http://www.bom.gov.au/jshess/docs/2013/bi2_hres.pdf)) and AusCOM ([Roberts et al., 2007](https://50years.acs.org.au/content/dam/acs/50-years/journals/jrpit/JRPIT39.2.137.pdf); [Bi and Marsland, 2010](https://www.cawcr.gov.au/technical-reports/CTR_027.pdf)) models originally developed at [CSIRO](http://www.csiro.au).
   
 The model code, configurations and performance were described in [Kiss et al. (2020)](https://doi.org/10.5194/gmd-13-401-2020), with further details in the draft [ACCESS-OM2 technical report](https://github.com/COSIMA/ACCESS-OM2-1-025-010deg-report). The current code and configurations differ from this version in a number of ways (biogeochemistry, updated forcing, improvements and bug fixes), as described by [Solodoch et al. (2022)](https://doi.org/10.1029/2021GL097211), [Hayashida et al. (2023)](https://dx.doi.org/10.1029/2023JC019697), [Menviel et al. (2023)](https://doi.org/10.5194/egusphere-2023-390) and [Wang et al. (2023)](https://doi.org/10.5194/gmd-2023-123).
   
@@ -24,11 +24,11 @@ ACCESS-OM2-BGC is built and deployed automatically to `gadi` on NCI (see below).
 
 Then clone this repository and run the following commands on `gadi`:
 ```
-spack env create access-om2 spack.yaml
-spack env activate access-om2
+spack env create access-om2-bgc spack.yaml
+spack env activate access-om2-bgc
 spack install
 ```
-to create a spack environment called `access-om2` and build all the ACCESS-OM2-BGC components, the locations of which can be found using `spack find --paths`.
+to create a spack environment called `access-om2-bgc` and build all the ACCESS-OM2-BGC components, the locations of which can be found using `spack find --paths`.
 
 In contrast, the [COSIMA ACCESS-OM2 repository](https://github.com/COSIMA/access-om2) uses [submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to bring all the code dependencies into a single repository and build all the models together. 
 
