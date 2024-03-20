@@ -14,8 +14,8 @@ spack:
       require: '@git.2023.10.19'
     mom5:
       require: 
-        - @git.2023.11.09 
-        - type=ACCESS-OM-BGC'
+        - '@git.2023.11.09' 
+        - 'type=ACCESS-OM-BGC'
     libaccessom2:
       require: '@git.2023.10.26'
     oasis3-mct:
