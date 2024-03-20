@@ -8,12 +8,14 @@
 spack:
   # add package specs to the `specs` list
   specs:
-  - access-om2@git.2023.11.23
+  - access-om2@git.2024.03.0
   packages:
     cice5:
       require: '@git.2023.10.19'
     mom5:
-      require: '@git.2023.11.09 type=ACCESS-OM-BGC'
+      require: 
+        - @git.2023.11.09 
+        - type=ACCESS-OM-BGC'
     libaccessom2:
       require: '@git.2023.10.26'
     oasis3-mct:
@@ -56,7 +58,7 @@ spack:
               'SPACK_{name}_ROOT': '{prefix}'
         projections:
           all: '{name}/{version}'
-          access-om2: '{name}-bgc/2023.11.23'
+          access-om2: '{name}-bgc/2024.03.0'
           cice5: '{name}/2023.10.19'
           mom5: '{name}-bgc/2023.11.09'
           libaccessom2: '{name}/2023.10.26'
