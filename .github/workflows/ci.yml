@@ -9,6 +9,7 @@ on:
       - spack.yaml
 env:
   SPACK_YAML_MODEL_YQ: .spack.specs[0]
+  MODEL_NAME: access-om2-bgc
 jobs:
   # There are a lot of interconnected jobs here. Here is a dependency diagram:
   # validate-json ──> check-json ─────────┬─────────────────────────┐
@@ -122,20 +123,24 @@ jobs:
           FAILED='false'
           DEPS=$(yq ".spack.modules.default.tcl.include | join(\" \")" spack.yaml)
 
-          # for each of the packages (access-om2, mom5, cice5...)
+          # for each of the packages (access-om2-bgc, mom5, cice5...)
           for DEP in $DEPS; do
             DEP_VER=''
-            if [[ "$DEP" == "access-om2" ]]; then
-              DEP_VER=$(yq ".spack.specs[]" spack.yaml | cut -c16-)
+            if [[ "$DEP" == "${{ env.MODEL_NAME }}" ]]; then
+              DEP_STR=$(yq ".spack.specs[]" spack.yaml)
             else
-              DEP_VER=$(yq ".spack.packages.\"$DEP\".require" spack.yaml | cut -c6-)
+              DEP_STR=$(yq ".spack.packages.\"$DEP\".require" spack.yaml)
             fi
+            DEP_VER=${DEP_STR/*@git./}
 
-            MODULE_VER=$(yq ".spack.modules.default.tcl.projections.\"$DEP\"" spack.yaml | cut -c8-)
+            MODULE_STR=$(yq ".spack.modules.default.tcl.projections.\"$DEP\"" spack.yaml)
+            MODULE_VER=${MODULE_STR/*\//}  # Keep the '2023.12.12' after the '/' in '{name}/2024.12.12'
 
             if [[ "$DEP_VER" != "$MODULE_VER" ]]; then
-              echo "::error::Version of dependency and projection do not match ($DEP_VER != $MODULE_VER)"
+              echo "::error::Version of dependency and projection of $DEP do not match ($DEP_VER != $MODULE_VER)"
               FAILED='true'
+            else
+              echo "Version of dependency and projection of $DEP match ($DEP_VER)"
             fi
           done
           if [[ "$FAILED" == "true" ]]; then
