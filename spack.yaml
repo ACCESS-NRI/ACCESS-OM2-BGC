@@ -8,9 +8,10 @@
 spack:
   # add package specs to the `specs` list
   specs:
-    - access-om2-bgc@git.2024.06.0
+    - access-om2-bgc@git.2024.06.1
   packages:
     cice5:
+      # Direct ACCESS-NRI Dependencies
       require:
         - '@git.2023.10.19'
     mom5:
@@ -22,6 +23,7 @@ spack:
     oasis3-mct:
       require:
         - '@git.2023.11.09'
+    # Other Dependencies
     netcdf-c:
       require:
         - '@4.9.2'
@@ -63,7 +65,7 @@ spack:
               'SPACK_{name}_ROOT': '{prefix}'
         projections:
           all: '{name}/{version}'
-          access-om2-bgc: '{name}/2024.06.0'
+          access-om2-bgc: '{name}/2024.06.1'
           cice5: '{name}/2023.10.19'
           mom5: '{name}-bgc/2024.06.27'
           libaccessom2: '{name}/2023.10.26'
