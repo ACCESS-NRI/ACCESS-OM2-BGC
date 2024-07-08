@@ -37,6 +37,7 @@ spack:
       require:
         - '@4.0.2'
     all:
+      # Enforce these versions rather than a preference, as in 'spack.packages.all.compilers/target'
       require:
         - '%intel@19.0.5.281'
         - 'target=x86_64'
