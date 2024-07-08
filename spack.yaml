@@ -8,9 +8,10 @@
 spack:
   # add package specs to the `specs` list
   specs:
-    - access-om2-bgc@git.2024.06.0
+    - access-om2-bgc@git.2024.06.1
   packages:
     cice5:
+      # Direct ACCESS-NRI Dependencies
       require:
         - '@git.2023.10.19'
     mom5:
@@ -22,6 +23,7 @@ spack:
     oasis3-mct:
       require:
         - '@git.2023.11.09'
+    # Other Dependencies
     netcdf-c:
       require:
         - '@4.9.2'
@@ -30,11 +32,10 @@ spack:
         - '@4.6.1'
     parallelio:
       require:
-        - '@2.6.2'
+        - '@2.5.2'
     openmpi:
       require:
         - '@4.1.5'
-        - 'cppflags="-diag-disable=10441"'
     all:
       require:
         - '%intel@2021.10.0'
@@ -53,9 +54,13 @@ spack:
         hash_length: 0
         include:
         - access-om2-bgc
-        hide_implicits: true
+        - mom5
+        - cice5
+        - libaccessom2
+        - oasis3-mct
+        exclude_implicits: true
         all:
-          autoload: direct
+          autoload: run
           conflict:
           - '{name}'
           environment:
@@ -63,7 +68,7 @@ spack:
               'SPACK_{name}_ROOT': '{prefix}'
         projections:
           all: '{name}/{version}'
-          access-om2-bgc: '{name}/2024.06.0'
+          access-om2-bgc: '{name}/2024.06.1'
           cice5: '{name}/2023.10.19'
           mom5: '{name}-bgc/2024.06.27'
           libaccessom2: '{name}/2023.10.26'
