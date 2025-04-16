@@ -13,16 +13,17 @@ spack:
     # Direct ACCESS-NRI Dependencies
     cice5:
       require:
-        - '@git.2023.10.19'
+        - '@git.2023.10.19=access-om2'
     mom5:
       require:
-        - '@git.2024.06.27'
+        - '@git.ed9eadc28f61818a075d0036ba80efc8863a7fcf=access-om2'
+        - '+legacy_bgc'
     libaccessom2:
       require:
-        - '@git.2023.10.26'
+        - '@git.2023.10.26=access-om2'
     oasis3-mct:
       require:
-        - '@git.2023.11.09'
+        - '@git.2023.11.09=access-om2'
     # Other Dependencies
     netcdf-c:
       require:
@@ -70,7 +71,7 @@ spack:
         projections:
           all: '{name}/{version}'
           access-om2-bgc: '{name}/2024.07.0'
-          cice5: '{name}/2023.10.19'
-          mom5: '{name}-bgc/2024.06.27'
-          libaccessom2: '{name}/2023.10.26'
-          oasis3-mct: '{name}/2023.11.09'
+          cice5: '{name}/2023.10.19-{hash:7}'
+          mom5: '{name}-bgc/ed9eadc28f61818a075d0036ba80efc8863a7fcf-{hash:7}'
+          libaccessom2: '{name}/2023.10.26-{hash:7}'
+          oasis3-mct: '{name}/2023.11.09-{hash:7}'
