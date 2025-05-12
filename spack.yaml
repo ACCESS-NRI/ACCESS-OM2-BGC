@@ -13,16 +13,16 @@ spack:
     # Direct ACCESS-NRI Dependencies
     cice5:
       require:
-        - '@git.2023.10.19'
+        - '@git.2023.10.19=access-om2'
     mom5:
       require:
-        - '@git.2024.06.27'
+        - '@git.1fdf6ffe8098189e159f8daae93c3b8a66c12add=legacy-access-om2-bgc' # On update_cmake
     libaccessom2:
       require:
-        - '@git.2023.10.26'
+        - '@git.db8a7352ebb2811693c8a2b698a861ba66189ea2=access-om2' # On fix-pkgconfig
     oasis3-mct:
       require:
-        - '@git.2023.11.09'
+        - '@git.2023.11.09=access-om2'
     # Other Dependencies
     netcdf-c:
       require:
@@ -36,6 +36,15 @@ spack:
     openmpi:
       require:
         - '@4.0.2'
+    access-fms:
+      require:
+        - '@git.c56cd23ed38ee84ae3c4e57fb4cb0d18ecfe1c70' # On mom5-preserve-answers
+    access-generic-tracers:
+      require:
+        - '@git.14922cbe00013f6f29b4f827f4dacdf8af634656' # On update-cmake
+    access-mocsy:
+      require:
+        - '@git.2017.12.0'
     all:
       # Enforce these versions rather than a preference, as in 'spack.packages.all.compilers/target'
       require:
@@ -46,31 +55,16 @@ spack:
     unify: true
   modules:
     default:
-      enable:
-      - tcl
-      roots:
-        tcl: $spack/../release/modules
-        lmod: $spack/../release/lmod
       tcl:
-        hash_length: 0
         include:
-        - access-om2-bgc
-        - mom5
-        - cice5
-        - libaccessom2
-        - oasis3-mct
-        exclude_implicits: true
-        all:
-          autoload: run
-          conflict:
-          - '{name}'
-          environment:
-            set:
-              'SPACK_{name}_ROOT': '{prefix}'
+          - access-om2-bgc
+          - mom5
+          - cice5
+          - libaccessom2
+          - oasis3-mct
         projections:
-          all: '{name}/{version}'
           access-om2-bgc: '{name}/2024.07.0'
-          cice5: '{name}/2023.10.19'
-          mom5: '{name}-bgc/2024.06.27'
-          libaccessom2: '{name}/2023.10.26'
-          oasis3-mct: '{name}/2023.11.09'
+          cice5: '{name}/2023.10.19-{hash:7}'
+          mom5: '{name}/1fdf6ffe8098189e159f8daae93c3b8a66c12add-{hash:7}'
+          libaccessom2: '{name}/db8a7352ebb2811693c8a2b698a861ba66189ea2-{hash:7}'
+          oasis3-mct: '{name}/2023.11.09-{hash:7}'
