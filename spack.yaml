@@ -16,7 +16,7 @@ spack:
         - '@git.2023.10.19=access-om2'
     mom5:
       require:
-        - '@git.e0b8d3d2a1d0ea242cf0a4fdaae84bb773c18c10=legacy-access-om2-bgc'  # On update_cmake
+        - '@git.2025.05.000=legacy-access-om2-bgc'
     libaccessom2:
       require:
         - '@git.2025.05.001=access-om2'
@@ -38,13 +38,13 @@ spack:
         - '@4.0.2'
     access-fms:
       require:
-        - '@git.mom5-2025.05.000'
+        - '@git.mom5-2025.05.000=mom5'
     access-generic-tracers:
       require:
-        - '@git.dev-2025.05.001'
+        - '@git.dev-2025.05.001=development'
     access-mocsy:
       require:
-        - '@git.2017.12.0'
+        - '@git.2017.12.0=mom5'
     all:
       # Enforce these versions rather than a preference, as in 'spack.packages.all.compilers/target'
       require:
@@ -65,6 +65,6 @@ spack:
         projections:
           access-om2-bgc: '{name}/2024.07.0'
           cice5: '{name}/2023.10.19-{hash:7}'
-          mom5: '{name}/e0b8d3d2a1d0ea242cf0a4fdaae84bb773c18c10-{hash:7}'
+          mom5: '{name}/2025.05.000-{hash:7}'
           libaccessom2: '{name}/2025.05.001-{hash:7}'
           oasis3-mct: '{name}/2023.11.09-{hash:7}'
